@@ -22,17 +22,19 @@ const  FetchData = ({cat}) => {
   return (
     <div className="container my-4">
       <h3><u>TOP HEADLINES</u></h3>
-      <div className="container d-flex justify-content-center align-items-center flex-column my-3">{Data? 
-      Data.map((items , index) => (
-        <>
-           <div className= "container my-3 p-3" style={{width: "600px" , boxShadow: "2px 2px 10px silver" ,bordeRadious:"10px" , minHeight: "100vh"}}>
-            <h5 className="my-1">{items.title}</h5>
-            <img src={items.urlToImage} alt="image not found" className="img-fluid d-flex justify-content-center align-items-center" style= {{width:"100%" , height:"300px"}}/>
-            <p className="my-1 ">{items.content}</p>
-            <Link to= {items.url} target= "_blank">View More</Link>
-           </div>
-        </>
-      )) : "LOADING..."}</div>
+      <div className="container d-flex justify-content-center align-items-center flex-column my-3">
+        {loading? "LOADING...":
+         Data.map((items , index) => (
+          <>
+             <div className= "container my-3 p-3" style={{width: "600px" , boxShadow: "2px 2px 10px silver" ,bordeRadious:"10px" , minHeight: "100vh"}}>
+              <h5 className="my-1">{items.title}</h5>
+              <img src={items.urlToImage} alt="image not found" className="img-fluid d-flex justify-content-center align-items-center" style= {{width:"100%" , height:"300px"}}/>
+              <p className="my-1 ">{items.content}</p>
+              <Link to= {items.url} target= "_blank">View More</Link>
+             </div>
+          </>
+        ))
+         }</div>
     </div>
   )
 }
