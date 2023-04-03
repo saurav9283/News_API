@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react'
 import axios  from "axios";
 import { Link } from 'react-router-dom';
 const  FetchData = ({cat}) => {
-    const [Data , setData] = useState("");
+    const [Data , setData] = useState([]);
+    const [loading , setLoading] = useState(false);
     const fetchData = async () => {
+      setLoading(true);
         await axios.get(cat? `
         https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=7660eecec31a4da1b127f2445ff05ea2`
             :"https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=7660eecec31a4da1b127f2445ff05ea2"
-        ).then((res)=> setData(res.data.articles));
+        ).then((res)=>{
+          setData(res.data.articles);
+          setLoading(false);
+        });
 
     };
     useEffect(() => { // when page refress it call automatically
