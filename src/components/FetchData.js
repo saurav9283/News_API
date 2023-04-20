@@ -7,7 +7,7 @@ const  FetchData = ({cat}) => {
     const fetchData = async () => {
         try {
           console.log("set loding true")
-          const res=await axios.get("https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=7660eecec31a4da1b127f2445ff05ea2")
+          const res=await axios.get("https://newsapi.org/v2/everything?q=tesla&from=2023-03-20&sortBy=publishedAt&apiKey=7660eecec31a4da1b127f2445ff05ea2")
           console.log("set loding false")
           setData(res.data.articles);
           setLoading(false);
