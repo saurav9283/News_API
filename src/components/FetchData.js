@@ -5,14 +5,19 @@ const  FetchData = ({cat}) => {
     const [Data , setData] = useState([]);
     const [loading , setLoading] = useState(false);
     const fetchData = async () => {
-      setLoading(true);
-        await axios.get(cat? `
-        https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=7660eecec31a4da1b127f2445ff05ea2`
-            :"https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=7660eecec31a4da1b127f2445ff05ea2"
-        ).then((res)=>{
+        try {
+          console.log("set loding true")
+          const res=await axios.get(cat? `
+          https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=7660eecec31a4da1b127f2445ff05ea2`
+              :"https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=7660eecec31a4da1b127f2445ff05ea2"
+          )
+          console.log("set loding false")
           setData(res.data.articles);
           setLoading(false);
-        });
+          
+        } catch (err) {
+          console.log(err)
+        }
 
     };
     useEffect(() => { // when page refress it call automatically
